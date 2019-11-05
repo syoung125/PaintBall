@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="brick_game.css">
+	<script>
+		var bricks;
+		var brickCol = 10;
+		var brickRow = 5;
+		var brickWidth = 50;
+		var brickHeight = 10;
+		var brickMargin = 7;
+
+		var map = "1111111111\n0111111110\n0011111100\n0001111000\n0000110000"
+		var mapArr;
+
+		function createBricks() {
+			mapRows = map.split("\n");
+			brickRow = mapRows.length;
+			brickCol = mapRows[0].length;
+
+			bricks = new Array(brickRow);
+			for (var i = 0; i < bricks.length; i++) { 
+			    bricks[i] = new Array(brickCol); 
+			} 
+
+			for(var i=0;i<brickCol;i++){
+				for(var j=0;j<brickRow;j++){
+		  			bricks[j][i] = createBrick(j, i);
+		  			if(mapRows[j][i] == 0){
+		  				bricks[j][i].hit = true;
+		  			}
+		  			updateDOMFromGO(bricks[j][i])
+				}
+			}
+		}
+
+		function createBrick(y, x) {
+			var brick={};
+			brick.dom = document.createElement("div");
+			brick.dom.classList.add("brick");
+			brick.width = brickWidth;
+			brick.height = brickHeight;
+		  	brick.x = x*(brickWidth+brickMargin)+brickMargin;
+		  	brick.y = y*(brickHeight+brickMargin)+brickMargin; 
+		  	brick.hit = false; 
+		  	document.getElementById("playArea").appendChild(brick.dom);
+
+		  	return brick;
+		}
+
+		function updateDOMFromGO(go) {	//go: gameobject
+
+			go.dom.style.width = go.width + "px";
+			go.dom.style.height = go.height + "px";
+			go.dom.style.top = go.y + "px";
+			go.dom.style.left = go.x + "px";
+			
+		}
+
+
+function openTextFile() {
+    var input = document.createElement("input");
+ 
+    input.type = "file";
+    input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
+ 
+    input.onchange = function (event) {
+        processFile(event.target.files[0]);
+    };
+ 
+    input.click();
+}
+ 
+function processFile(file) {
+    var reader = new FileReader();
+ 
+    reader.onload = function () {
+        output.innerText = reader.result;
+    };
+    console.log(file);
+ 
+    reader.readAsText(file, /* optional */ "euc-kr");
+}
+
+	</script>
+</head>
+<body onload="createBricks()">
+<div id="game">
+<!-- 	<button onclick="openTextFile()">Open</button> -->
+	<!-- <div id="output"></div> -->
+	<div id="playArea">
+	</div>
+</div>
+</body>
+</html>
