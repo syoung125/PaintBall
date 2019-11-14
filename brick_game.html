@@ -5,14 +5,26 @@
 	<script src="brick_maps.js"></script>
 	<script src="brick_game.js"></script>
 	<script src="items.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=McLaren&display=swap" rel="stylesheet">
 </head>
 <body onload="init()">
-<div id="game">
-	<div id="playArea">
-		<div id="myPaddle" class="paddle"></div>
-		<div id="ball"></div>
+	<div id="header">
+		<h1 id="gameTitle">Paint Ball </h1>
+		<img id="brushImg" src="img/paint-brush.png" width="35">
+		<div id="scoreDiv">
+			<h1 class = "scoreTxt">Score :&nbsp;</h1>
+			<h1 class = "scoreTxt" id="score">100</h1>
+		</div>
 	</div>
-</div>
-
+	<div id="statusBar">
+		<div id="myPaint"></div>
+	</div>
+	<div id="game">
+		<div id="playArea">
+			<div id="myPaddle" class="paddle"></div>
+			<div id="ball"></div>
+		</div>
+	</div>
 </body>
 </html>

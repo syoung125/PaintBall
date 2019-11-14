@@ -1,95 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="brick_game.css">
-	<script>
-		var bricks;
-		var brickCol = 10;
-		var brickRow = 5;
-		var brickWidth = 50;
-		var brickHeight = 10;
-		var brickMargin = 7;
-
-		var map = "1111111111\n0111111110\n0011111100\n0001111000\n0000110000"
-		var mapArr;
-
-		function createBricks() {
-			mapRows = map.split("\n");
-			brickRow = mapRows.length;
-			brickCol = mapRows[0].length;
-
-			bricks = new Array(brickRow);
-			for (var i = 0; i < bricks.length; i++) { 
-			    bricks[i] = new Array(brickCol); 
-			} 
-
-			for(var i=0;i<brickCol;i++){
-				for(var j=0;j<brickRow;j++){
-		  			bricks[j][i] = createBrick(j, i);
-		  			if(mapRows[j][i] == 0){
-		  				bricks[j][i].hit = true;
-		  			}
-		  			updateDOMFromGO(bricks[j][i])
-				}
-			}
-		}
-
-		function createBrick(y, x) {
-			var brick={};
-			brick.dom = document.createElement("div");
-			brick.dom.classList.add("brick");
-			brick.width = brickWidth;
-			brick.height = brickHeight;
-		  	brick.x = x*(brickWidth+brickMargin)+brickMargin;
-		  	brick.y = y*(brickHeight+brickMargin)+brickMargin; 
-		  	brick.hit = false; 
-		  	document.getElementById("playArea").appendChild(brick.dom);
-
-		  	return brick;
-		}
-
-		function updateDOMFromGO(go) {	//go: gameobject
-
-			go.dom.style.width = go.width + "px";
-			go.dom.style.height = go.height + "px";
-			go.dom.style.top = go.y + "px";
-			go.dom.style.left = go.x + "px";
-			
-		}
-
-
-function openTextFile() {
-    var input = document.createElement("input");
- 
-    input.type = "file";
-    input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
- 
-    input.onchange = function (event) {
-        processFile(event.target.files[0]);
-    };
- 
-    input.click();
-}
- 
-function processFile(file) {
-    var reader = new FileReader();
- 
-    reader.onload = function () {
-        output.innerText = reader.result;
-    };
-    console.log(file);
- 
-    reader.readAsText(file, /* optional */ "euc-kr");
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background-color:rgba(0,0,0,1.00);
+	color:rgba(255,255,255,1.00);
+  overflow: hidden;
 }
 
+body * {
+  z-index: 20;
+  color: rgba(0,0,0,1.00);
+}
+
+#content {
+  width: 100%;
+  height: 100vh;
+}
+
+#light {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  box-shadow: inset 0 0 150px 150px #000;
+  background: #fff;
+  z-index: 10;
+}
+
+.light-off {
+  box-shadow: inset 0 0 150px 250px #000 !important;
+}
+
+.pogi {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  color: yellow;
+}
+.pogi2 {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+.pogi3 {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+}
+	</style>
+
+	<script type="text/javascript">
+//this is a sample flashlight effect
+
+$(document).ready(function() {
+  $(this).mousemove(function(e) {
+    $("#light").css({
+      "top": e.pageY - 250,
+      "left": e.pageX - 250
+    })
+  }).mousedown(function(e) {
+    switch (e.which) {
+        case 1:
+            $("#light").toggleClass("light-off");
+            break;
+        case 2:
+            console.log('Middle Mouse button pressed.');
+            break;
+        case 3:
+            console.log('Right Mouse button pressed.');
+            break;
+        default:
+            console.log('You have a strange Mouse!');
+    }
+  })
+})
+
+//idea
+//when the ball is in the light box, turn it color original.
+//if it's out of the box, change the color to black.
+//to hide the blocks which are upside, make a black big board and cover them.
 	</script>
 </head>
-<body onload="createBricks()">
-<div id="game">
-<!-- 	<button onclick="openTextFile()">Open</button> -->
-	<!-- <div id="output"></div> -->
-	<div id="playArea">
+<body>
+	<div id="light"></div>
+
+	<div id="content">
+	  <div class="pogi">
+	    <h1>POGI AKO</h1>
+	  </div>
+	  <div class="pogi2">
+	    <h1>tTTT</h1>
+	  </div>
+	  <div class="pogi3">
+	    <h1>tTTT</h1>
+	  </div>
 	</div>
-</div>
 </body>
 </html>
+

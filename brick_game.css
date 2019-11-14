@@ -1,5 +1,102 @@
 body{
 	margin: 0px;
+	width: 100%;
+	height: 100vh;
+}
+
+
+/*style of header*/
+#header{
+	position: absolute;
+	overflow: hidden;
+	background-color: #1f1b1d;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+}
+
+#gameTitle{
+	color: white;
+	margin: 0px;
+	padding-top: 10px;
+	padding-right: 10px;
+	font-family: 'McLaren', cursive;
+	display: inline-block;
+}
+
+#scoreDiv{
+	position: absolute;
+	margin: 0px;
+	line-height: 100%;
+	height: 100%;
+	display: inline-block;
+	top: 0px;
+	left: 0px;
+	/*why width????*/
+}
+
+.scoreTxt{
+	margin: 0px;
+	color: white;
+	display: inline-block;
+	line-height: 100%;
+	height: 100%;
+}
+
+
+/*style of statusBar*/
+#statusBar{
+	position: absolute;
+	background-color: #D2B48C;
+	background-image: url("img/woodTexture.jpg");
+	width: 8%;
+	height: 90%;
+}
+
+.life{
+	position: absolute;
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+#myPaint{
+	position: absolute;
+}
+
+#score{
+	position: absolute;
+}
+
+
+#game{
+	position: absolute;
+	background-color: #8B4513;
+	background-image: url("img/woodTexture.jpg");
+	width: 92%;
+	height: 90%;
+	z-index: -1;
+}
+
+#playArea{
+	position: absolute;
+	margin: auto;
+	background-color: #fff;
+	background-image: url("img/paperTexture.jpg");
+	opacity: 0.85;
+	width: 97%;
+	height: 95%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+#ball{
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	background-color: black;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	z-index: 1;
 }
 
 .paddle{
@@ -9,31 +106,37 @@ body{
 	background-color: #000;
 }
 
-#game{
-	position: absolute;
-	background-color: #f0f;
-	width: 100%;
-	height: 100%;
-}
-
-#playArea{
-	position: absolute;
-	margin: auto;
-	background-color: #fff;
-	width: 95%;
-	height: 95%;
-}
-
-#ball{
-	position: absolute;
-	height: 25px;
-	width: 25px;
-	border-radius: 50%;
-	background-color: red;
-}
 
 .brick{
 	position: absolute;
 	padding: 0px;
 	display: inline-block;
+	border: 2px solid black;
+}
+
+
+/*CSS for blind item*/
+
+#light{
+	--cusorX: 100vw;
+	--cusorY: 50vh;
+}
+
+#light:before{
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	pointer-events: none;
+	background: radial-gradient(circle 15vmax at var(--cusorX) var(--cusorY),
+		rgba(0,0,0,0) 0%,
+		rgba(0,0,0,0.5) 50%,
+		rgba(0,0,0,1) 100%
+	);
+}
+
+.item{
+	position: absolute;
+	background-size: contain;
 }
