@@ -8,12 +8,12 @@ If you're interested in it, [try it](https://syoung125.github.io/PaintBall/brick
 Move your cursor from side to side.
 
 ## Item
-+
--
-speed up
-해골
-tourch
-up side down
+* Extend the bar length
+* Shorten the bar length
+* Increase the ball speed
+* Reverse direction
+* tourch
+* Turn the map up side down
 
 ## Demonstration video
 https://youtu.be/06hZEyZtE98
