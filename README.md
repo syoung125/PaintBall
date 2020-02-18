@@ -12,8 +12,11 @@ Move your cursor from side to side.
 * Shorten the bar length
 * Increase the ball speed
 * Reverse direction
-* tourch
+* Blind mode (Torch)
 * Turn the map up side down
 
 ## Demonstration video
 https://youtu.be/06hZEyZtE98
+
+# References
+https://www.youtube.com/watch?v=Wo-kQopjWiQ
